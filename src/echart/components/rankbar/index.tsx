@@ -2,7 +2,7 @@
 /*
  * @Date: 2023-03-23 10:19:23
  * @LastEditors: Fullsize
- * @LastEditTime: 2023-10-11 16:23:42
+ * @LastEditTime: 2023-10-11 16:36:58
  * @FilePath: /components/src/echart/components/rankbar/index.tsx
  * @Author: Fullsize
  */
@@ -125,7 +125,8 @@ const RankBar = (props: RankBarProps) => {
       grid: {
         top: 40,
         bottom: 0,
-        left: fns.textWidth(newData, "name", fontSize) + 40,
+        left:
+          fns.textWidth(newData, "name", fontSize) + (hasRank ? 40 : fontSize),
         right:
           fns.textWidth(newData, "value", fontSize) +
           fns.textWidth(newData, "unit"),
