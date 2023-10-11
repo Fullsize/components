@@ -1,2 +1,2 @@
-export { default as Echart } from './Echart'
-export { default as EchartBar } from './EchartBar'
+export { default as Echart } from './components/echart'
+export { default as EchartBar } from './components/echart-bar'

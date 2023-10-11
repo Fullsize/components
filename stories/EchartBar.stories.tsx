@@ -1,9 +1,15 @@
+import React from "react";
 import { EchartBar } from "../src/echart";
 import type { StoryObj } from "@storybook/react";
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+const DefaultComponent = (props) => (
+  <div style={{ height: 300 }}>
+    <EchartBar {...props} />
+  </div>
+);
 export default {
   title: "echart/EchartBar",
-  component: EchartBar,
+  component: DefaultComponent,
   // parameters: {
   //   // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
   //   layout: 'centered',
@@ -24,27 +30,7 @@ export default {
         type: "object",
       },
     },
-    isCustomBar: {
-      description: "是否使用自定义柱图",
-      defaultValue: false,
-      control: {
-        type: "boolean",
-      },
-    },
-    barColors: {
-      description: "柱图颜色列表",
-      defaultValue: [
-        "#0080FF",
-        "#48E679",
-        "#5ED1FF",
-        "#FF8E32",
-        "#FFCB35",
-        "#A46CFF",
-      ],
-      control: {
-        type: "object",
-      },
-    },
+
     data: {
       description: "数据列表",
     },
@@ -248,14 +234,7 @@ export const Primary: Story = {
       name: "index_code_full_cname",
       value: "val",
       unit: "unit_name",
+      type: "type",
     },
-    barColors: [
-      "#0080FF",
-      "#48E679",
-      "#5ED1FF",
-      "#FF8E32",
-      "#FFCB35",
-      "#A46CFF",
-    ],
   },
 };
