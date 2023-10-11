@@ -33,7 +33,7 @@ const Echart = (props: Props, ref: React.Ref<unknown> | undefined) => {
         devicePixelRatio: getScale(),
       });
     }
-
+    // echartRef.current = chart;
     // setOption
     setOption(chart);
     return;
