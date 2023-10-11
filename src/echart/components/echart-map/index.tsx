@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Echart, { OPTIONTYPE } from '@/components/echart';
-import _, { isArray } from 'lodash';
-import * as echarts from 'echarts';
+import React, { useEffect, useState } from "react";
+import Echart, { OPTIONTYPE } from "../echart";
+import _, { isArray } from "lodash";
+import * as echarts from "echarts";
 interface Props {
   geojson: any;
   scatter?: {
@@ -23,14 +23,14 @@ const EchartMap = (props: Props) => {
   const fns = {
     setMap(op: OPTIONTYPE) {
       if (_.isEmpty(props.geojson)) return op;
-      echarts.registerMap('echart_map', props.geojson);
+      echarts.registerMap("echart_map", props.geojson);
       const option: OPTIONTYPE = {
         geo: {
           show: true,
           label: {
             show: false,
           },
-          map: 'echart_map',
+          map: "echart_map",
           zoom: 1.2,
         },
         visualMap: {
@@ -44,13 +44,13 @@ const EchartMap = (props: Props) => {
       if (_.isEmpty(props.areaData)) return op;
       const ot: OPTIONTYPE = {
         visualMap: {
-          min: _.minBy(props.areaData, 'value')?.value || 0,
-          max: _.maxBy(props.areaData, 'value')?.value,
+          min: _.minBy(props.areaData, "value")?.value || 0,
+          max: _.maxBy(props.areaData, "value")?.value,
         },
         series: {
-          name: 'area',
-          type: 'map',
-          map: 'echart_map',
+          name: "area",
+          type: "map",
+          map: "echart_map",
           emphasis: {
             disabled: true,
           },
@@ -72,15 +72,15 @@ const EchartMap = (props: Props) => {
         value: [item.lon, item.lat, item.value],
         unit: item.unit,
         itemStyle: {
-          color: 'rgb(255, 138, 12)',
+          color: "rgb(255, 138, 12)",
         },
       }));
       const ot: OPTIONTYPE = {
         series: [
           {
-            name: 'dot',
-            type: 'scatter',
-            coordinateSystem: 'geo',
+            name: "dot",
+            type: "scatter",
+            coordinateSystem: "geo",
             symbol: props.scatter?.symbol,
             data: arr,
             zlevel: 6,
@@ -96,25 +96,25 @@ const EchartMap = (props: Props) => {
     let option: OPTIONTYPE = {
       tooltip: {
         show: true,
-        trigger: 'item',
+        trigger: "item",
         formatter: (params: any) => {
-          let str = '';
+          let str = "";
           if (isArray(params)) {
-            str = '';
+            str = "";
           } else {
-            if (params.seriesType === 'map') {
+            if (params.seriesType === "map") {
               str =
                 params.data?.name +
-                '<br/>' +
-                (params.data.value ?? '') +
-                (params.data.unit ?? '');
+                "<br/>" +
+                (params.data.value ?? "") +
+                (params.data.unit ?? "");
             }
-            if (params.seriesType === 'scatter') {
+            if (params.seriesType === "scatter") {
               str =
                 params.data?.name +
-                '<br/>' +
-                (params.data.value[2] ?? '') +
-                (params.data.unit ?? '');
+                "<br/>" +
+                (params.data.value[2] ?? "") +
+                (params.data.unit ?? "");
             }
           }
 
@@ -128,7 +128,6 @@ const EchartMap = (props: Props) => {
     option = fns.setArea(option);
     // 地图打点
     option = fns.setScatter(option);
-
     setOption(option);
   }, [props.geojson, props.areaData, props.scatter]);
   return <Echart option={option} />;

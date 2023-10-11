@@ -21,6 +21,7 @@
     "@storybook/react": "^7.4.0",
     "@storybook/react-webpack5": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
+    "esbuild": "^0.19.4",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prop-types": "^15.8.1",

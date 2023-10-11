@@ -57,18 +57,18 @@ const Echart = (props: Props, ref: React.Ref<unknown> | undefined) => {
     chartObj.setOption(props.option, true);
   };
   // 窗口自适应并开启过渡动画
-  // useEffect(() => {
-  //   window.addEventListener('resize', () => {
-  //     if (echartRef.current) {
-  //       echartRef.current.resize({
-  //         animation: { duration: 300 },
-  //       });
-  //     }
-  //   });
-  //   return () => {
-  //     window.removeEventListener('resize', () => {});
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (echartRef.current) {
+        echartRef.current.resize({
+          animation: { duration: 300 },
+        });
+      }
+    });
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
   // 监听echart容器和option变化
   useEffect(() => {
     init();
